@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_flutter_firebase/constants/keys.dart';
 import 'package:ecommerce_flutter_firebase/constants/strings.dart';
 
-enum TabItem { map, cart, account }
+enum TabItem { map, menu, account }
 
 class TabItemData {
   const TabItemData(
@@ -18,11 +18,8 @@ class TabItemData {
       title: Strings.food,
       icon: Icons.fastfood,
     ),
-    TabItem.cart: TabItemData(
-      key: Keys.cartTab,
-      title: Strings.cart,
-      icon: Icons.shopping_cart,
-    ),
+    TabItem.menu: TabItemData(
+        key: Keys.menuTab, title: Strings.menu, icon: Icons.view_list),
     TabItem.account: TabItemData(
       key: Keys.accountTab,
       title: Strings.account,

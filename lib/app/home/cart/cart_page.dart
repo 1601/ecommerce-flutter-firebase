@@ -1,22 +1,24 @@
+import 'package:ecommerce_flutter_firebase/app/home/models/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_flutter_firebase/app/home/models/cart.dart';
+import 'package:ecommerce_flutter_firebase/constants/strings.dart';
 
 class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart', style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
+        title: Text(Strings.cart),
+        backgroundColor: Colors.orange,
       ),
       body: Container(
-        color: Colors.yellow,
+        color: Colors.white,
         child: Column(
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(32),
+                padding: const EdgeInsets.all(0),
                 child: _CartList(),
               ),
             ),
@@ -34,14 +36,39 @@ class _CartList extends StatelessWidget {
   Widget build(BuildContext context) {
     var itemNameStyle = Theme.of(context).textTheme.headline6;
     var cart = Provider.of<CartModel>(context);
-
+    var menu = Provider.of<MenuModel>(context);
+    //TODO: add empty cart
     return ListView.builder(
       itemCount: cart.items.length,
       itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
+        leading: Icon(Icons.arrow_right),
         title: Text(
-          cart.items[index].name,
+          "PHP " +
+              cart.items[index].price.toString() +
+              " - " +
+              cart.items[index].name,
           style: itemNameStyle,
+        ),
+        trailing: FlatButton(
+          onPressed: () {
+            var selectedItemId = cart.items[index].id;
+            Scaffold.of(context).showSnackBar(SnackBar(
+                action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      cart.add(menu.getByPosition(selectedItemId));
+                    }),
+                content: Text("Remove from cart " +
+                    menu.getByPosition(selectedItemId).name +
+                    "- PHP " +
+                    menu.getByPosition(selectedItemId).price.toString())));
+            cart.remove(menu.getByPosition(selectedItemId));
+          },
+          color: Colors.white,
+          child: Icon(
+            Icons.remove_shopping_cart,
+            color: Colors.orange,
+          ),
         ),
       ),
     );
@@ -55,21 +82,21 @@ class _CartTotal extends StatelessWidget {
         Theme.of(context).textTheme.headline1.copyWith(fontSize: 48);
 
     return SizedBox(
-      height: 200,
+      height: 250,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Consumer<CartModel>(
                 builder: (context, cart, child) =>
-                    Text('\$${cart.totalPrice}', style: hugeStyle)),
+                    Text('PHP${cart.totalPrice}', style: hugeStyle)),
             SizedBox(width: 24),
             FlatButton(
               onPressed: () {
                 Scaffold.of(context).showSnackBar(
                     SnackBar(content: Text('Buying not supported yet.')));
               },
-              color: Colors.white,
+              color: Colors.orange,
               child: Text('BUY'),
             ),
           ],

@@ -26,7 +26,7 @@ class CupertinoHomeScaffold extends StatelessWidget {
         key: Key(Keys.tabBar),
         items: [
           _buildItem(TabItem.map),
-          _buildItem(TabItem.cart),
+          _buildItem(TabItem.menu),
           _buildItem(TabItem.account),
         ],
         onTap: (index) => onSelectTab(TabItem.values[index]),

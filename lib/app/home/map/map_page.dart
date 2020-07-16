@@ -1,94 +1,54 @@
-// Copyright 2019 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ecommerce_flutter_firebase/app/home/models/menu.dart';
-import 'package:ecommerce_flutter_firebase/app/home/models/cart.dart';
+import 'package:ecommerce_flutter_firebase/constants/strings.dart';
 
 class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _MyAppBar(),
-          SliverToBoxAdapter(child: SizedBox(height: 12)),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => _MyListItem(index)),
+      appBar: AppBar(
+        title: Text(Strings.homePage),
+        backgroundColor: Colors.orange,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () => Navigator.pushNamed(context, '/cart'),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _AddButton extends StatelessWidget {
-  final Item item;
-
-  const _AddButton({Key key, @required this.item}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var cart = Provider.of<CartModel>(context);
-
-    return FlatButton(
-      onPressed: cart.items.contains(item) ? null : () => cart.add(item),
-      splashColor: Theme.of(context).primaryColor,
-      child: cart.items.contains(item)
-          ? Icon(Icons.check, semanticLabel: 'ADDED')
-          : Text('ADD'),
-    );
-  }
-}
-
-class _MyAppBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      title: Text('Menu', style: Theme.of(context).textTheme.headline1),
-      floating: true,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.shopping_cart),
-          onPressed: () => Navigator.pushNamed(context, '/cart'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              '< Google Maps Placeholder>',
+            ),
+            Text(
+              'Show Food Landmarks',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
         ),
-      ],
-    );
-  }
-}
-
-class _MyListItem extends StatelessWidget {
-  final int index;
-
-  _MyListItem(this.index, {Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var catalog = Provider.of<MenuModel>(context);
-    var item = catalog.getByPosition(index);
-    var textTheme = Theme.of(context).textTheme.headline6;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: LimitedBox(
-        maxHeight: 48,
-        child: Row(
-          children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                color: item.color,
+      ),
+      floatingActionButton: new Container(
+        height: 140.0,
+        child: new Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.bottomRight,
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                    height: 60.0,
+                    child: new FloatingActionButton(
+                      onPressed: null,
+                      tooltip: 'Capture preferred food',
+                      child: new Icon(Icons.camera_alt),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(width: 24),
-            Expanded(
-              child: Text(item.name, style: textTheme),
-            ),
-            SizedBox(width: 24),
-            _AddButton(item: item),
+            )
           ],
         ),
       ),

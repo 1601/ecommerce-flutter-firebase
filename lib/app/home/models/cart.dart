@@ -22,7 +22,12 @@ class CartModel extends ChangeNotifier {
       items.fold(0, (total, current) => total + current.price);
 
   void add(Item item) {
-    _itemIds.add(item.id);
+    _itemIds.add(item.hashCode);
+    notifyListeners();
+  }
+
+  void remove(Item item) {
+    _itemIds.remove(item.hashCode);
     notifyListeners();
   }
 }

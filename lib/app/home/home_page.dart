@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_flutter_firebase/app/home/account/account_page.dart';
 import 'package:ecommerce_flutter_firebase/app/home/cupertino_home_scaffold.dart';
 import 'package:ecommerce_flutter_firebase/app/home/map/map_page.dart';
-import 'package:ecommerce_flutter_firebase/app/home/cart/cart_page.dart';
+import 'package:ecommerce_flutter_firebase/app/home/menu/menu_page.dart';
 import 'package:ecommerce_flutter_firebase/app/home/tab_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,14 +15,14 @@ class _HomePageState extends State<HomePage> {
 
   final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
     TabItem.map: GlobalKey<NavigatorState>(),
-    TabItem.cart: GlobalKey<NavigatorState>(),
+    TabItem.menu: GlobalKey<NavigatorState>(),
     TabItem.account: GlobalKey<NavigatorState>(),
   };
 
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
       TabItem.map: (_) => MapPage(),
-      TabItem.cart: (_) => CartPage(),
+      TabItem.menu: (_) => MenuPage(),
       TabItem.account: (_) => AccountPage(),
     };
   }

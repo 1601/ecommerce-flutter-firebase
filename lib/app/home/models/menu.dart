@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class MenuModel {
   static List<String> itemNames = [
@@ -11,18 +10,36 @@ class MenuModel {
     'Tomatoes',
     'Greenpepper',
     'Redpepper',
-    'Sweetpotatoes',
-    'Whitepotatoes',
+    'Sweetpotato',
+    'Whitepotato',
     'Garlic',
     'Onion',
-    'Romainelettuce',
+    'Lettuce',
     'Spinach',
-    'Freshparsley',
-    'Freshcilantro',
+    'Parsley',
+    'Cilantro',
   ];
-  Random rng = new Random();
-  Item getById(int id) =>
-      Item(id, itemNames[id % itemNames.length], rng.nextInt(90) + 10);
+
+  static List<int> itemPrices = [
+    61,
+    88,
+    49,
+    16,
+    21,
+    64,
+    15,
+    56,
+    65,
+    48,
+    58,
+    49,
+    84,
+    41,
+    65,
+    64,
+  ];
+  Item getById(int id) => Item(
+      id, itemNames[id % itemNames.length], itemPrices[id % itemPrices.length]);
 
   Item getByPosition(int position) {
     return getById(position);

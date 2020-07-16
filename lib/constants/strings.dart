@@ -17,16 +17,19 @@ class Strings {
   static const String or = 'or';
   static const String signInFailed = 'Sign in failed';
 
-  // Home page
+  // Home Page
   static const String homePage = 'Home Page';
 
   // Cart page
   static const String cart = 'Cart';
 
-  // Food page
+  // Food Tab
   static const String food = 'Food';
 
-  // Account page
+  // Menu Tab
+  static const String menu = 'Menu';
+
+  // Account Tab
   static const String account = 'Account';
   static const String accountPage = 'Account Page';
 }
