@@ -77,7 +77,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
       body: Column(
         children: <Widget>[
           Container(
-            height: 500,
+            height: 550,
             child: Padding(
               padding: const EdgeInsets.all(1.0),
               child: Center(
@@ -98,22 +98,16 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           // _toggleAudioWidget(),
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _cameraTogglesRowWidget(),
-                IconButton(
-                  icon: const Icon(Icons.camera_alt),
-                  color: Colors.blue,
-                  onPressed: controller != null &&
-                          controller.value.isInitialized &&
-                          !controller.value.isRecordingVideo
-                      ? onTakePictureButtonPressed
-                      : null,
-                ),
-                _thumbnailWidget(),
-              ],
-            ),
+            child: Container(
+                color: Colors.orange,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _cameraTogglesRowWidget(),
+                    _thumbnailWidget(),
+                  ],
+                )),
           ),
         ],
       ),
@@ -168,12 +162,27 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.camera_alt),
+              color: Colors.blue,
+              onPressed: controller != null &&
+                      controller.value.isInitialized &&
+                      !controller.value.isRecordingVideo
+                  ? onTakePictureButtonPressed
+                  : null,
+            ),
             videoController == null && imagePath == null
                 ? Container(child: Icon(Icons.photo_album))
                 : SizedBox(
                     child: (videoController == null)
-                        ? Image.file(
-                            File(imagePath)) //TODO: Show taken pictures
+                        ? GestureDetector(
+                            onTap: () {
+                              //TODO: Show taken pictures
+                              showInSnackBar("Image File: " + imagePath);
+                              // Navigator.pushNamed(context, '/imageGrid');
+                            },
+                            child: Image.file(File(imagePath)),
+                          )
                         : Container(
                             child: Center(
                               child: AspectRatio(
@@ -489,5 +498,3 @@ Future<Widget> cameraInit() async {
   }
   return (CameraApp());
 }
-
-//TODO:reference:https://stackoverflow.com/questions/54692052/display-all-images-in-a-directory-to-a-list-in-flutter
