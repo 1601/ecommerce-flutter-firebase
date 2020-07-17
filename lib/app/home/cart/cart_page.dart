@@ -44,7 +44,6 @@ class _CartList extends StatelessWidget {
     var itemNameStyle = Theme.of(context).textTheme.headline6;
     var cart = Provider.of<CartModel>(context);
     var menu = Provider.of<MenuModel>(context);
-    //TODO: add empty cart
     return ListView.builder(
       itemCount: cart.items.length,
       itemBuilder: (context, index) => ListTile(
