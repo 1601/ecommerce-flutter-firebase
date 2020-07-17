@@ -30,4 +30,9 @@ class CartModel extends ChangeNotifier {
     _itemIds.remove(item.hashCode);
     notifyListeners();
   }
+
+  void empty() {
+    _itemIds.clear();
+    notifyListeners();
+  }
 }

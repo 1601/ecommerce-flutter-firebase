@@ -7,10 +7,17 @@ import 'package:ecommerce_flutter_firebase/constants/strings.dart';
 class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var cart = Provider.of<CartModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(Strings.cart),
         backgroundColor: Colors.orange,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.remove_shopping_cart),
+            onPressed: () => cart.empty(),
+          ),
+        ],
       ),
       body: Container(
         color: Colors.white,
@@ -66,7 +73,7 @@ class _CartList extends StatelessWidget {
           },
           color: Colors.white,
           child: Icon(
-            Icons.remove_shopping_cart,
+            Icons.remove_circle_outline,
             color: Colors.orange,
           ),
         ),
@@ -82,25 +89,24 @@ class _CartTotal extends StatelessWidget {
         Theme.of(context).textTheme.headline1.copyWith(fontSize: 48);
 
     return SizedBox(
-      height: 250,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Consumer<CartModel>(
-                builder: (context, cart, child) =>
-                    Text('PHP${cart.totalPrice}', style: hugeStyle)),
-            SizedBox(width: 24),
-            FlatButton(
-              onPressed: () {
-                Scaffold.of(context).showSnackBar(
-                    SnackBar(content: Text('Buying not supported yet.')));
-              },
-              color: Colors.orange,
-              child: Text('BUY'),
-            ),
-          ],
-        ),
+      height: 185,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Consumer<CartModel>(
+              builder: (context, cart, child) =>
+                  Text('PHP${cart.totalPrice}', style: hugeStyle)),
+          SizedBox(width: 24),
+          FlatButton(
+            onPressed: () {
+              Scaffold.of(context).showSnackBar(
+                  SnackBar(content: Text('Buying not supported yet.')));
+            },
+            color: Colors.orange,
+            child: Text('BUY'),
+          ),
+        ],
       ),
     );
   }

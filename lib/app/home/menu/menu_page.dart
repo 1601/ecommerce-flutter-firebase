@@ -39,7 +39,10 @@ class _AddButton extends StatelessWidget {
       onPressed: cart.items.contains(item) ? null : () => cart.add(item),
       splashColor: Theme.of(context).primaryColor,
       child: cart.items.contains(item)
-          ? Icon(Icons.playlist_add_check, semanticLabel: 'ADDED TO CART')
+          ? Container(
+              width: 96,
+              child: Icon(Icons.playlist_add_check,
+                  semanticLabel: 'ADDED TO CART'))
           : Text('ADD TO CART'),
     );
   }
@@ -83,13 +86,22 @@ class _MyListItem extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 1,
                 child: Container(
+                  padding: const EdgeInsets.all(5),
                   color: item.color,
+                  child: Image.network(item.image),
                 ),
               ),
               SizedBox(width: 24),
               Expanded(
                 child: Text(item.name, style: textTheme),
               ),
+              SizedBox(
+                  width: 24,
+                  child: IconButton(
+                    icon: Icon(Icons.pin_drop),
+                    tooltip: item.location,
+                    onPressed: () {},
+                  )),
               SizedBox(width: 24),
               _AddButton(item: item),
             ],
