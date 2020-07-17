@@ -41,7 +41,7 @@ class MapPage extends StatelessWidget {
                   Container(
                     height: 60.0,
                     child: new FloatingActionButton(
-                      onPressed: null,
+                      onPressed: () => Navigator.pushNamed(context, '/camera'),
                       tooltip: 'Capture preferred food',
                       child: new Icon(Icons.camera_alt),
                     ),
