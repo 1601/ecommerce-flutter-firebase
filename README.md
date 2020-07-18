@@ -2,6 +2,14 @@
 
 An e commerce app to demonstrate basic native device function (eg, camera functions, taking picture, saving image uploading image to backend)
 
+## Installation
+
+git clone https://github.com/1601/ecommerce-flutter-firebase.git
+
+cd ecommerce_flutter_firebase
+
+flutter run
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

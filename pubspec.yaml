@@ -1,5 +1,5 @@
 name: ecommerce_flutter_firebase
-description: A new Flutter project.
+description: An e commerce app to demonstrate basic native device function (eg, camera functions, taking picture, saving image uploading image to backend).
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -28,6 +28,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  # Use provider to a easier data consumption and provision
+  provider: ^4.3.1
+  #The following adds camera functionalities
+  camera: ^0.5.8+2
+  path_provider: ^1.6.11
+  video_player: ^0.10.11+2
+  #The following adds persistence - local data storage
+  sqflite: ^1.3.1
+  #The following adds GMaps and Device Location
+  google_maps_flutter: ^0.5.17
+  location: ^3.0.2
 
 dev_dependencies:
   flutter_test:
