@@ -39,6 +39,8 @@ dependencies:
   #The following adds GMaps and Device Location
   google_maps_flutter: ^0.5.17
   location: ^3.0.2
+  #The following adds Firebase
+  cloud_firestore: ^0.13.7
 
 dev_dependencies:
   flutter_test:
