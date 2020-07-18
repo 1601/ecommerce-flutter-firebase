@@ -21,7 +21,7 @@ class Strings {
   static const String homePage = 'Find food near you';
 
   // Camera page
-  static const String camera = 'Camera';
+  static const String camera = 'Send Food Request';
 
   // Cart page
   static const String cart = 'Cart';

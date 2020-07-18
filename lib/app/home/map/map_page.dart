@@ -76,30 +76,31 @@ class MapState extends State<MapScaffold> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _manilaPosition,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: {
-          bananaMarker,
-          orangeMarker,
-          lemonMarker,
-          carrotMarker,
-          cucumberMarker,
-          tomatoMarker,
-          greenpepperMarker,
-          redpepperMarker,
-          sweetpotatoMarker,
-          whitepotatoMarker,
-          garlicMarker,
-          onionMarker,
-          lettuceMarker,
-          spinachMarker,
-          parsleyMarker,
-          cilantroMarker,
-        },
-      ),
+          mapType: MapType.normal,
+          initialCameraPosition: _manilaPosition,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: {
+            bananaMarker,
+            orangeMarker,
+            lemonMarker,
+            carrotMarker,
+            cucumberMarker,
+            tomatoMarker,
+            greenpepperMarker,
+            redpepperMarker,
+            sweetpotatoMarker,
+            whitepotatoMarker,
+            garlicMarker,
+            onionMarker,
+            lettuceMarker,
+            spinachMarker,
+            parsleyMarker,
+            cilantroMarker,
+          },
+          myLocationEnabled: true,
+          padding: EdgeInsets.only(bottom: 175.0, right: 23.0)),
     );
   }
 

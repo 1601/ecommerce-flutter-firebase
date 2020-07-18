@@ -324,7 +324,9 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           videoController?.dispose();
           videoController = null;
         });
-        if (filePath != null) showInSnackBar('Picture saved to $filePath');
+        if (filePath != null)
+          showInSnackBar(
+              'Picture is submitted for request, saved on $filePath');
       }
     });
   }
