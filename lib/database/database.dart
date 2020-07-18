@@ -59,7 +59,6 @@ class CartDatabase {
       res.forEach((element) {
         itemIds.add(element['itemId']);
       });
-      print(itemIds);
       return itemIds;
     }
     return itemIds;
